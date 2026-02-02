@@ -96,6 +96,7 @@ cc_library(
     name = "env_impl",
     srcs = [
         "env.cc",
+        "//xla/tsl/platform:ram_file_system.h",
     ],
     tags = [
         "manual",
@@ -107,6 +108,7 @@ cc_library(
         ":wide_char",
         "//xla/tsl/platform:logging",
         "//xla/tsl/protobuf:error_codes_proto_impl_cc",
+        "@com_google_absl//absl/strings:string_view",
         "@tsl//tsl/platform:load_library",
         "@tsl//tsl/platform:mutex",
     ],
