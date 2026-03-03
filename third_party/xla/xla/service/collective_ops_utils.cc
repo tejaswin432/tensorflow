@@ -240,7 +240,7 @@ absl::StatusOr<CollectiveOpGroupMode> GetCollectiveOpGroupMode(
 
 const CollectiveDeviceListBase& GetCollectiveDeviceList(
     const HloInstruction* hlo) {
-  return Cast<HloCollectiveInstruction>(hlo)->device_list();
+  return *Cast<HloCollectiveInstruction>(hlo)->device_list();
 }
 
 const std::vector<ReplicaGroup>& GetCollectiveReplicaGroups(

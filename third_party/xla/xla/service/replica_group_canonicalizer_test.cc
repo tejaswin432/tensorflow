@@ -80,7 +80,7 @@ TEST_F(ReplicaGroupCanonicalizerTest, ConvertsV3ToV1CollectiveDeviceList) {
   auto* root = module->entry_computation()->root_instruction();
   EXPECT_EQ(root->opcode(), HloOpcode::kAllReduce);
   auto* collective = Cast<HloCollectiveInstruction>(root);
-  const auto& device_list = collective->device_list();
+  const CollectiveDeviceListBase& device_list = *collective->device_list();
   // Expect fallback to ListOfLists (which is default for CollectiveDeviceList).
   EXPECT_EQ(device_list.version(), CollectiveDeviceListVersion::kListOfLists);
 }

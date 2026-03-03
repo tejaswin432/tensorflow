@@ -739,7 +739,8 @@ class IsSolLatencyEstimatorEnabledTest : public HloTestBase {
         module->AddEmbeddedComputation(wrapped_computation.Build());
     entry->AddInstruction(HloInstruction::CreateAllReduce(
         shape, {dummy_operand}, subcomp,
-        /*device_list=*/CollectiveDeviceList(), /*constrain_layout=*/false,
+        /*device_list=*/std::make_shared<CollectiveDeviceList>(),
+        /*constrain_layout=*/false,
         /*channel_id=*/std::nullopt, /*use_global_device_ids=*/false));
   }
 
@@ -751,7 +752,7 @@ class IsSolLatencyEstimatorEnabledTest : public HloTestBase {
         LiteralUtil::CreateR2<float>({{1, 2}, {3, 4}})));
     entry->AddInstruction(HloInstruction::CreateAllToAll(
         shape, {dummy_operand},
-        /*device_list=*/CollectiveDeviceList(),
+        /*device_list=*/std::make_shared<CollectiveDeviceList>(),
         /*constrain_layout=*/false, /*channel_id=*/false,
         /*split_dimension=*/std::nullopt));
   }
@@ -763,7 +764,7 @@ class IsSolLatencyEstimatorEnabledTest : public HloTestBase {
         LiteralUtil::CreateR2<float>({{1, 2}, {3, 4}})));
     entry->AddInstruction(HloInstruction::CreateCollectiveBroadcast(
         shape, {dummy_operand},
-        /*device_list=*/CollectiveDeviceList(),
+        /*device_list=*/std::make_shared<CollectiveDeviceList>(),
         /*constrain_layout=*/false, /*channel_id=*/std::nullopt));
   }
 

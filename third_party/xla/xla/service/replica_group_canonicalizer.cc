@@ -39,7 +39,7 @@ absl::StatusOr<bool> ReplicaGroupCanonicalizer::RunImpl(
       if (collective == nullptr) {
         continue;
       }
-      const CollectiveDeviceListBase& device_list = collective->device_list();
+      const CollectiveDeviceListBase& device_list = *collective->device_list();
       if (device_list.version() != CollectiveDeviceListVersion::kMeshAxes) {
         continue;
       }
