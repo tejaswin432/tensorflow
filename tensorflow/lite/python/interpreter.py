@@ -409,6 +409,7 @@ class Interpreter:
       experimental_preserve_all_tensors=False,
       experimental_disable_delegate_clustering=False,
       experimental_default_delegate_latest_features=False,
+      experimental_compress_quantization_zero_points=False,
   ):
     """Constructor.
 
